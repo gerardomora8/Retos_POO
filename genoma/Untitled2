@@ -1,0 +1,55 @@
+#include<iostream>
+#include<vector>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<int> solution(string S, vector<int> P, vector<int> Q){
+    //vector<int> frag; //Fragmento de la secuencia
+    vector <int> resultado;
+    int M = P.size(); //Número de consultas
+    //Paso 3:
+    for(int k = 0; k < M; k++){
+        //Paso 3.1 y 3.2:
+        //int tam = (Q[k]-P[k])+1; //Tamaño del fragmento
+        vector<int> frag;
+
+        for(int i = P[k]; i <= Q[k]; i++){
+            if(S[i] == 'A'){
+                frag.push_back(1);
+            }
+            if(S[i] == 'C'){
+                frag.push_back(2);
+            }
+            if(S[i] == 'G'){
+                frag.push_back(3);
+            }
+            if(S[i] == 'T'){
+                frag.push_back(4);
+            }
+        }
+
+        resultado.push_back(*min_element(frag.begin(), frag.end()));
+
+
+    }
+
+    return resultado;
+
+}
+
+int main(){
+    //Paso 1:
+    string S = "CAGCCTA";
+
+    //Paso 2:
+    vector<int> P{2, 5, 0};
+    vector<int> Q{4, 5, 6};
+    vector<int> solucion;
+    solucion = solution(S, P, Q); //Se guarda el vector solucion
+
+    for (int i = 0; i < solucion.size(); i++){
+        cout << solucion[i] << endl;
+    }
+
+}
